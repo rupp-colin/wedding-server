@@ -12,7 +12,10 @@ module.exports = {
   process.env.TEST_DATABASE_URL ||
   '',
   JWT_SECRET: process.env.JWT_SECRET,
-  JWT_EXPIRY: process.envJWT_EXPIRY || '4d'
-
+  JWT_EXPIRY: process.env.JWT_EXPIRY || '4d',
+  EMAIL_ADDRESS: process.env.EMAIL_ADDRESS,
+  EMAIL_PASS: process.env.EMAIL_PASS,
+  COLIN: process.env.COLIN,
+  KELSEY: process.env.KELSEY
 };
 
