@@ -9,7 +9,6 @@ const router = express.Router();
 router.post('/', (req, res, next) => {
   //pull the appropriate fields off the request body
   const { rsvp, guestName, message, dietaryRestrictions } = req.body;
-
   if (!guestName || !rsvp) {
     const err = new Error('Missing required field.  Request must contain fields "guestName" and "rsvp"');
     err.status = 400;

@@ -26,8 +26,6 @@ app.use(
   })
 );
 
-console.log('#############################\n', process.env.EMAIL_ADDRESS);
-
 // mount routers
 app.use('/guests', guestRouter);
 
