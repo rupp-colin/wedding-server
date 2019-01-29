@@ -1,11 +1,12 @@
 'use strict';
-
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 
 const { PORT, CLIENT_ORIGIN } = require('./config');
 const { dbConnect } = require('./db-mongoose.js');
+
+const guestRouter = require('./routes/guests.js');
 
 const app = express();
 
@@ -25,6 +26,10 @@ app.use(
   })
 );
 
+console.log('#############################\n', process.env.EMAIL_ADDRESS);
+
+// mount routers
+app.use('/guests', guestRouter);
 
 //error handler
 app.use((err, req, res, next) => {
