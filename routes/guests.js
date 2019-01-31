@@ -2,6 +2,9 @@ const express = require('express');
 const Guest = require('../models/guests.js');
 const nodemailer = require('nodemailer');
 const { EMAIL_ADDRESS, EMAIL_PASS, COLIN, KELSEY } = require('../config.js');
+const sendMail = require('../utils/sendEmail.js');
+const sendConfirmation = require('../utils/sendConfirmation.js');
+
 
 const router = express.Router();
 
@@ -36,7 +39,7 @@ router.post('/', (req, res, next) => {
 
 
 module.exports = router;
-
+/*
 async function sendMail(res){
 
   if (!res.message) {
@@ -104,4 +107,4 @@ async function sendConfirmation(guestEmail){
 
   console.log("Message sent: %s", info.messageId);
   console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-}
+}*/
