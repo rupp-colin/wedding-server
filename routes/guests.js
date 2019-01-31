@@ -8,15 +8,15 @@ const router = express.Router();
 // ****************** POST new guest info ************* //
 router.post('/', (req, res, next) => {
   //pull the appropriate fields off the request body
-  const { rsvp, guestName, message, dietaryRestrictions } = req.body;
-  if (!guestName || !rsvp) {
+  const { rsvp, guestName, guestEmail, message, dietaryRestrictions } = req.body;
+  if (!guestName || !rsvp || !guestEmail) {
     const err = new Error('Missing required field.  Request must contain fields "guestName" and "rsvp"');
     err.status = 400;
     return next(err);
   }
 
   //assign them to a new object to be passed into the DB
-  const guestData = {rsvp, guestName, message, dietaryRestrictions};
+  const guestData = {rsvp, guestName, guestEmail, message, dietaryRestrictions};
 
   Guest
     .create(guestData)
@@ -25,6 +25,9 @@ router.post('/', (req, res, next) => {
     })
     .then(result => {
       sendMail(guestData);
+    })
+    .then(() => {
+      sendConfirmation(guestEmail);
     })
     .catch(err => {
       next(err);
@@ -65,6 +68,35 @@ async function sendMail(res){
       </ul>
       <br>
       <p>${res.message}</p>
+      `
+  };
+
+  let info = await transporter.sendMail(mailOptions);
+
+  console.log("Message sent: %s", info.messageId);
+  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+}
+
+
+async function sendConfirmation(guestEmail){
+
+  let account = await nodemailer.createTestAccount();
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: EMAIL_ADDRESS,
+      pass: EMAIL_PASS
+    }
+  });
+  let mailOptions = {
+    from: `"RSVP Gnome", <${EMAIL_ADDRESS}`,
+    //TODO set up mine and kelsey's email in .env and config
+    to: guestEmail,
+    subject: "RSVP confirmation",
+    test: "sent new rsvp message",
+    html: `
+      <h2>Thanks for the RSVP</h2>
+      <p>Your RSVP has been recieved!</p>
       `
   };
 
