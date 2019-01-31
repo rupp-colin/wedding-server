@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const guestSchema = new mongoose.Schema({
   rsvp: { type: String, required: true },
   guestName: { type: String, required: true },
+  guestEmail: { type: String, required: true },
   message: { type: String },
   dietaryRestrictions: { type: String },
 });
