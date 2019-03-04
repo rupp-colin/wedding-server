@@ -1,0 +1,31 @@
+{
+  "name": "kelsey-colin-wedding-api",
+  "version": "1.0.0",
+  "description": "api for wedding website",
+  "main": "index.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.7",
+    "morgan": "^1.9.1",
+    "nodemailer": "^5.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rupp-colin/wedding-server.git"
+  },
+  "keywords": [
+    "[]"
+  ],
+  "author": "Colin Rupp",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rupp-colin/wedding-server/issues"
+  },
+  "homepage": "https://github.com/rupp-colin/wedding-server#readme"
+}
