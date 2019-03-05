@@ -1,7 +1,6 @@
 const express = require('express');
+const {CLIENT_ORIGIN} = require('../config.js');
 const Guest = require('../models/guests.js');
-const nodemailer = require('nodemailer');
-const { EMAIL_ADDRESS, EMAIL_PASS, COLIN, KELSEY } = require('../config.js');
 const sendMail = require('../utils/sendEmail.js');
 const sendConfirmation = require('../utils/sendConfirmation.js');
 
@@ -10,6 +9,10 @@ const router = express.Router();
 
 // ****************** POST new guest info ************* //
 router.post('/', (req, res, next) => {
+
+  //allow the server to send data to the client
+  res.setHeader('Access-Control-Allow-Origin', CLIENT_ORIGIN);
+
   //pull the appropriate fields off the request body
   const { rsvp, guestName, guestEmail, message, dietaryRestrictions } = req.body;
   if (!guestName || !rsvp || !guestEmail) {
