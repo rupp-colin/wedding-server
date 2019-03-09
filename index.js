@@ -28,6 +28,9 @@ app.use(
 
 // mount routers
 app.use('/guests', guestRouter);
+app.get('/test', (req, res, next) => {
+  res.send('API is getting');
+});
 
 //error handler
 app.use((err, req, res, next) => {
