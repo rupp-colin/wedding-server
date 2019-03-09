@@ -10,9 +10,6 @@ const router = express.Router();
 // ****************** POST new guest info ************* //
 router.post('/', (req, res, next) => {
 
-  //allow the server to send data to the client
-  res.setHeader('Access-Control-Allow-Origin', CLIENT_ORIGIN);
-
   //pull the appropriate fields off the request body
   const { rsvp, guestName, guestEmail, message, dietaryRestrictions } = req.body;
   if (!guestName || !rsvp || !guestEmail) {
