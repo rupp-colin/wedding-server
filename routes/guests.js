@@ -29,12 +29,12 @@ router.post('/', (req, res, next) => {
     .then(result => {
       res.status(201).json(result);
     })
-    /*.then(result => {
+    .then(result => {
       sendMail(guestData);
     })
     .then(() => {
       sendConfirmation(guestEmail);
-    })*/
+    })
     .catch(err => {
       next(err);
     });
