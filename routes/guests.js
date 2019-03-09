@@ -23,10 +23,11 @@ router.post('/', (req, res, next) => {
 
   Guest
     .create(guestData)
-    .then(result => {
+    .then(res => {
+      res.setHeader('Access-Control-Allow-Origin', CLIENT_ORIGIN);
       res.status(201).json(result);
     })
-    .then(result => {
+    .then(() => {
       sendMail(guestData);
     })
     .then(() => {
