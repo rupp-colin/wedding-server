@@ -27,13 +27,9 @@ router.post('/', (req, res, next) => {
   Guest
     .create(guestData)
     .then(result => {
-      res.status(201).json(result);
-    })
-    .then(result => {
       sendMail(guestData);
-    })
-    .then(() => {
       sendConfirmation(guestEmail);
+      res.status(201).json(result);
     })
     .catch(err => {
       next(err);
